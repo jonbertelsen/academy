@@ -1,3 +1,5 @@
+import java.util.List;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
     public class Main {
@@ -22,10 +24,16 @@
             hogwarts.registerStudentToCourse("Harry P", "Muggle Studies", 4);
             hogwarts.registerStudentToCourse("Ron W", "Muggle Studies", 10);
             hogwarts.registerStudentToCourse("Hermoine", "Muggle Studies", 12);
+            hogwarts.registerStudentToCourse("Hermoine", "Alchemy", 7);
 
             Student s = hogwarts.getStudentByName("Harry P");
             hogwarts.printDiploma(s);
             hogwarts.printDiploma(hogwarts.getStudentByName("Hermoine"));
+
+            List<Student> highestAverage = hogwarts.getHighest(3);
+            for (Student student : highestAverage) {
+                System.out.println(student);
+            }
 
         }
     }

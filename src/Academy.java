@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Academy {
@@ -20,17 +21,54 @@ public class Academy {
                 System.out.println(cr.getCourse().getName() + ": " + cr.getGrade());
             }
         }
+        System.out.println("Gennemsnit: " + student.getAverageGrade(registrations));
     }
 
     public List<Student> getHighest(int quantity){
+        List<StudentAverageDTO> averageList = new ArrayList<>();
+        for (Student s : students){
+            StudentAverageDTO studentAverageDTO = new StudentAverageDTO(s, s.getAverageGrade(registrations));
+            averageList.add(studentAverageDTO);
+        }
 
-        return null;
+        Collections.sort(averageList);
+
+        List<Student> resultList = new ArrayList<>();
+
+        // Hvis quantity er større end antallet af students der har fået karakterer
+        if (quantity > averageList.size()){
+            quantity = averageList.size();
+        }
+
+        for (int i = 0; i < quantity; i++){
+            resultList.add(averageList.get(i).getStudent());
+        }
+
+       return resultList;
     }
 
     public List<Student> getLowest(int quantity){
+        List<StudentAverageDTO> averageList = new ArrayList<>();
+        for (Student s : students){
+            StudentAverageDTO studentAverageDTO = new StudentAverageDTO(s, s.getAverageGrade(registrations));
+            averageList.add(studentAverageDTO);
+        }
+        Collections.sort(averageList, Collections.reverseOrder());
 
-        return null;
+        List<Student> resultList = new ArrayList<>();
+
+        // Hvis quantity er større end antallet af students der har fået karakterer
+        if (quantity > averageList.size()){
+            quantity = averageList.size();
+        }
+
+        for (int i = 0; i < quantity; i++){
+            resultList.add(averageList.get(i).getStudent());
+        }
+
+        return resultList;
     }
+
 
     // ****** Students ************
 
@@ -100,5 +138,21 @@ public class Academy {
         }
         System.out.println("Kunne ikke finde Student med navn: " + studentName);
         return null;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public List<CourseRegistration> getRegistrations() {
+        return registrations;
     }
 }

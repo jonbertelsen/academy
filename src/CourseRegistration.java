@@ -10,8 +10,6 @@ public class CourseRegistration {
         this.grade = grade;
     }
 
-
-
     public Student getStudent() {
         return student;
     }
