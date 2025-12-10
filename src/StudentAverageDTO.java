@@ -17,13 +17,6 @@ public class StudentAverageDTO implements Comparable<StudentAverageDTO> {
 
     @Override
     public int compareTo(StudentAverageDTO o) {
-        if (this.average > o.average){
-            return 1;
-        } else {
-            if (this.average < o.average){
-                return -1;
-            }
-        }
-        return 0;
+        return Double.compare(this.average, o.average);
     }
 }

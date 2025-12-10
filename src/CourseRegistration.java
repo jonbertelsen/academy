@@ -4,6 +4,7 @@ public class CourseRegistration {
     private Course course;
     private int grade;
 
+
     public CourseRegistration(Student student, Course course, int grade) {
         this.student = student;
         this.course = course;
